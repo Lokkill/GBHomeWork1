@@ -91,9 +91,9 @@ public class HomeWork2 {
      */
     // Сразу хочу сказать, что определённые знания у меня есть, поэтому тут и интернет не нужен
     private static void minAndMaxValueInArray() {
-        int[] massive = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
+        int[] massive = {1, 5, 3, 2, 11, -4, 5, 2, 4, 8, 9, 1};
         int minValue = Integer.MAX_VALUE;
-        int maxValue = 0;
+        int maxValue = Integer.MIN_VALUE;
         for (int element : massive) {
             if (minValue > element) minValue = element;
             if (maxValue < element) maxValue = element;
