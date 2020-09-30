@@ -16,6 +16,7 @@ public class HomeWork2 {
         System.out.println(task6);
         System.out.println("--------------------------");
         int[] massive = {0, 1, 2, 3, 4, 5, 6, 7};
+        //int[] emptyArr = new int[0];
         shiftValuesMassive(massive, 2);
         shiftValuesMassive(massive, -2);
         shiftValuesMassiveVer2(massive, -3);
@@ -111,6 +112,10 @@ public class HomeWork2 {
      * граница показана символами ||, эти символы в массив не входят.
      */
     private static boolean isSumToHalfArray(int[] massive) {
+        if (massive.length < 2){
+            errorIncorrectArray();
+            return false;
+        }
         int leftSide = 0;
         int rightSide = 0;
         int exValue = massive.length - 1;
@@ -152,7 +157,15 @@ public class HomeWork2 {
     // + - вправо
     // int[] massive = {0,1,2,3,4,5,6,7};
     // int offs = 4;
+    private static void errorIncorrectArray(){
+        System.out.println("Incorrect array");
+        System.out.println("--------------------------");
+    }
     private static void shiftValuesMassive(int[] primMassive, int offset) {
+        if (primMassive.length == 0){
+            errorIncorrectArray();
+            return;
+        }
         int[] massive = primMassive.clone(); // Сделанно для того, чтобы не изменялся изначальный массив
         int intermediateValue = 0;
         int tempValue = 0;
@@ -202,6 +215,10 @@ public class HomeWork2 {
     // Вариант 2, не совсем понятно что должно делать при отрицательном сдвиге, первый вариант начинает свдиг в обратную сторону,
     // второй вариант запасной, если знак должен игнорироваться
     private static void shiftValuesMassiveVer2(int[] primMassive, int offset) {
+        if (primMassive.length == 0){
+            errorIncorrectArray();
+            return;
+        }
         int[] massive = primMassive.clone(); // Сделанно для того, чтобы не изменялся изначальный массив
         int intermediateValue = 0;
         int tempValue = 0;
