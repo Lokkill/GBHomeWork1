@@ -51,10 +51,11 @@ public class HomeWork2 {
         printArray(massive);
     }
 
-    public static void printArray(int[] mas){
+    public static void printArray(int[] mas) {
         System.out.println(Arrays.toString(mas));
         System.out.println("--------------------------");
     }
+
     /*
      * Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ]
      * пройти по нему циклом, и числа меньшие 6 умножить на 2
@@ -70,7 +71,6 @@ public class HomeWork2 {
     }
 
 
-
     /*
      * Создать квадратный двумерный целочисленный массив (количество строк и столбцов одинаковое),
      * и с помощью цикла(-ов) заполнить его диагональные элементы единицами
@@ -79,8 +79,9 @@ public class HomeWork2 {
         int[][] massive = new int[6][6];
         for (int i = 0; i < massive.length; i++) {
             massive[i][i] = 1;
+            massive[i][(massive.length - 1) - i] = 1;
         }
-        for (int[] inMas : massive){
+        for (int[] inMas : massive) {
             System.out.println(Arrays.toString(inMas));
         }
         System.out.println("--------------------------");
@@ -112,7 +113,7 @@ public class HomeWork2 {
      * граница показана символами ||, эти символы в массив не входят.
      */
     private static boolean isSumToHalfArray(int[] massive) {
-        if (massive.length < 2){
+        if (massive.length < 2) {
             errorIncorrectArray();
             return false;
         }
@@ -157,12 +158,13 @@ public class HomeWork2 {
     // + - вправо
     // int[] massive = {0,1,2,3,4,5,6,7};
     // int offs = 4;
-    private static void errorIncorrectArray(){
+    private static void errorIncorrectArray() {
         System.out.println("Incorrect array");
         System.out.println("--------------------------");
     }
+
     private static void shiftValuesMassive(int[] primMassive, int offset) {
-        if (primMassive.length == 0){
+        if (primMassive.length == 0) {
             errorIncorrectArray();
             return;
         }
@@ -215,7 +217,7 @@ public class HomeWork2 {
     // Вариант 2, не совсем понятно что должно делать при отрицательном сдвиге, первый вариант начинает свдиг в обратную сторону,
     // второй вариант запасной, если знак должен игнорироваться
     private static void shiftValuesMassiveVer2(int[] primMassive, int offset) {
-        if (primMassive.length == 0){
+        if (primMassive.length == 0) {
             errorIncorrectArray();
             return;
         }
