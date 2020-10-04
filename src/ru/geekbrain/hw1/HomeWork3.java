@@ -15,10 +15,10 @@ public class HomeWork3 {
         guessTheNumber(9);
 
         /*
-        * При запуске программы компьютер загадывает слово, запрашивает ответ у пользователя,
-        * сравнивает его с загаданным словом и сообщает правильно ли ответил пользователь.
-        * Если слово не угадано, компьютер показывает буквы которые стоят на своих местах.
-        */
+         * При запуске программы компьютер загадывает слово, запрашивает ответ у пользователя,
+         * сравнивает его с загаданным словом и сообщает правильно ли ответил пользователь.
+         * Если слово не угадано, компьютер показывает буквы которые стоят на своих местах.
+         */
         String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli",
                 "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom",
                 "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
@@ -38,11 +38,19 @@ public class HomeWork3 {
                 int res = scanner.nextInt();
                 if (playNumber == res) {
                     System.out.println("Вы угадали число! Поздравляем!");
-                    if (oneMoreGame(scanner)) guessTheNumber(bound);
+                    if (oneMoreGame(scanner)) {
+                        guessTheNumber(bound);
+                    } else {
+                        break;
+                    }
                     //oneMoreGame(scanner);
                 } else if (i == 2) {
                     System.out.println("Вы не угадали число, повезёт в другой раз!");
-                    if (oneMoreGame(scanner)) guessTheNumber(bound);
+                    if (oneMoreGame(scanner)) {
+                        guessTheNumber(bound);
+                    } else {
+                        break;
+                    }
                 } else {
                     if (playNumber > res) {
                         System.out.println("Ваше число меньше, чем загаданное число!");
@@ -64,8 +72,7 @@ public class HomeWork3 {
         if (scanner.hasNextInt()) {
             switch (scanner.nextInt()) {
                 case 0:
-                    System.exit(0);
-                    break;
+                    return false;
                 case 1:
                     return true;
                 default:
@@ -93,7 +100,7 @@ public class HomeWork3 {
         }
     }
 
-    public static void guessTheWord(String[] arrStrings){
+    public static void guessTheWord(String[] arrStrings) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         String mask = "###############";
@@ -101,16 +108,20 @@ public class HomeWork3 {
         hiddenWord = hiddenWord.concat(mask.substring(0, hiddenWord.length()));
         System.out.println("Игра 'Угадай слово!'. Было загадано слово, которое Вам необходимо отгадать. Тема - Фрукты и Овощи. Удачи!");
         char[] guessWord = mask.toCharArray();
-        while (true){
+        while (true) {
             System.out.println("Введите предполагаемое слово: ");
             String word = scanner.nextLine().toLowerCase();
-            for (int i = 0; i < word.length(); i++){
-                if (guessWord[i] == '#' && hiddenWord.charAt(i) == word.charAt(i)){
+            for (int i = 0; i < word.length(); i++) {
+                if (guessWord[i] == '#' && hiddenWord.charAt(i) == word.charAt(i)) {
                     guessWord[i] = word.charAt(i);
                 }
             }
-            if (String.valueOf(guessWord).replaceAll("#", "").equals(hiddenWord.replaceAll("#", ""))){
-                if (oneMoreGame(scanner)) guessTheWord(arrStrings);
+            if (String.valueOf(guessWord).replaceAll("#", "").equals(hiddenWord.replaceAll("#", ""))) {
+                if (oneMoreGame(scanner)) {
+                    guessTheWord(arrStrings);
+                } else {
+                    break;
+                }
             } else {
                 System.out.println("Совпавшие буквы: " + String.valueOf(guessWord));
             }
