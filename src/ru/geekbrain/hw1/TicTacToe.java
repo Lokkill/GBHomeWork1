@@ -1,6 +1,7 @@
 package ru.geekbrain.hw1;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -23,15 +24,24 @@ public class TicTacToe {
         // 2. Инициализация поля
         initMap();
         // 3. Вывод поля
+        int countStep = 0;
         while (true) {
-            printMap();
-            // 4. Ход игрока
-            actionPlayers(scanner);
-            // 5. Ход ИИ
-            actionAI();
-            // 6 .Проверка на победу
-            if (checkVictory(choicePlayer) || checkVictory(choiceAI) || checkDraw()) break;
+            // 4. Ход игрока ИЛИ ИИ
+            if (choicePlayer == DOT_X){
+                printMap();
+                actionPlayers(scanner);
+                actionAI(countStep);
+                if (checkVictory(choicePlayer) || checkVictory(choiceAI) || checkDraw()) break;
+            } else {
+                actionAI(countStep);
+                printMap();
+                if (checkVictory(choicePlayer) || checkVictory(choiceAI) || checkDraw()) break;
+                actionPlayers(scanner);
+            }
 
+            // 6 .Проверка на победу
+
+            countStep++;
         }
 
     }
@@ -218,8 +228,19 @@ public class TicTacToe {
 
     // В общем идея данного алгоритма искать приоритетную строку/столбец/диагональ, то есть высчитывается та, в которой у игрока больше шансов победить
     // Таким образом алгоритм ищет самую близкую к победе комбинацию игрока и делает затычку
-    static void actionAI() {
-
+    static void actionAI(int countStep) {
+        if (countStep == 0){
+            Random random = new Random();
+            while (true) {
+                int x = random.nextInt(map.length);
+                int y = random.nextInt(map.length);
+                if (map[y][x] == DOT_EMPTY) {
+                    map[y][x] = choiceAI;
+                    break;
+                }
+            }
+            return;
+        }
         int[][] interestArr = new int[4][2];
         int interestRowX = 0;
         int interestRowY = 0;
